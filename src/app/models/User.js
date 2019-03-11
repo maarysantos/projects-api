@@ -3,19 +3,19 @@ const sequelize = require('../../database/index');
 
 const bcrypt = require ('bcryptjs');
 
-const Usuario =  sequelize.define('usuario', {
+const User =  sequelize.define('user', {
    
-  nm_login : {
+  email : {
       type: Sequelize.STRING,
       primaryKey : true,
       allowNull: false
     },
-  nm_usuario: {
+  name: {
       type: Sequelize.STRING,
       allowNull : false
     },
   
-  nm_senha : {
+  password : {
       type: Sequelize.STRING,
       allowNull : false,
       
@@ -32,14 +32,14 @@ const Usuario =  sequelize.define('usuario', {
   }
   },{
 
-  hooks: {
-      beforeCreate : usuario => {
-        const salt = bcrypt.genSaltSync();
-        usuario.nm_senha = bcrypt.hashSync(usuario.nm_senha, salt);
+    classMethods: {
+      associate: (models) => {
+          User.hasMany(models.Project);
+        
       }
-    }
-  });
+  }
+});
 
-Usuario.sync();
+//User.sync();
 
-module.exports = Usuario;
+module.exports = User;
