@@ -17,6 +17,7 @@ const Project =  sequelize.define('project', {
     }
       ,{
 
+
         classMethods: {
             associate: (models) => {
                 Project.belongsTo(models.User)

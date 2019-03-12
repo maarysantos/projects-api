@@ -6,6 +6,5 @@ const sequelize = new Sequelize('prjvitrine', 'root', 'root', {
   operatorsAliases : 'false'
 });
 
-
 module.exports = sequelize;
 

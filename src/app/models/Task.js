@@ -21,6 +21,8 @@ const Task =  sequelize.define('task', {
           allowNull: false
       }
     }
+            //assigneTo(user) e project
+
       ,{
 
         classMethods: {
