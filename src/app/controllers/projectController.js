@@ -3,7 +3,7 @@ const router = express.Router();
 
 const authMiddleware = require ('../middlewares/auth');
 
-const Project = require ('../models/Project');
+const { Project } = require ('../models');
 
 router.use(authMiddleware);
 
