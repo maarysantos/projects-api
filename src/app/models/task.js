@@ -2,7 +2,6 @@ const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, DataTypes) => {
   const Task = sequelize.define('Task', {
-    //pertecence a um projeto e a um usuario
 
     title: {
       type: DataTypes.STRING,
@@ -23,6 +22,9 @@ module.exports = (sequelize, DataTypes) => {
     });
   Task.associate = function (models) {
     Task.belongsTo(models.User, { foreignKey: 'fk_user' });
+    Task.belongsTo(models.Project, { foreignKey: 'fk_projectId' });
   };
   return Task;
+  
 };
+

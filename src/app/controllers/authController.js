@@ -41,6 +41,7 @@ router.post('/register', async (req, res) => {
 
 router.post('/authenticate', async (req, res) => {
     const {email, password} = req.body;
+    
 
     const usuario = await User.findOne({where : {email}})
     if (!usuario)

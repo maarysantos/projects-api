@@ -24,7 +24,7 @@ module.exports = (req, res, next) =>{
 
         if(err) return res.status(401).send({error:"Token jwt"});
 
-        req.userId =decoded.id;
+        req.userId =decoded.userId;
         return next();
 
     })

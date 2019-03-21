@@ -3,11 +3,17 @@ const bcrypt = require('bcryptjs');
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
 
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement : true
+    },
+
     email: {
       type: DataTypes.STRING,
-      primaryKey: true,
       allowNull: false
     },
+    
     name: {
       type: DataTypes.STRING,
       allowNull: false
@@ -29,10 +35,22 @@ module.exports = (sequelize, DataTypes) => {
       //select : false
     }
   }, {
-      tableName: 'user'
+      tableName: 'user',
+      hooks: {
+        beforeCreate : usuario => {
+          const salt = bcrypt.genSaltSync();
+          usuario.password = bcrypt.hashSync(usuario.password, salt);
+        },
+        beforeUpdate : usuario =>{
+          const salt = bcrypt.genSaltSync();
+          usuario.password = bcrypt.hashSync(usuario.password, salt);
+          }
+      }
     });
   User.associate = function (models) {
     User.hasMany(models.Project);
   };
   return User;
+ 
 };
+
