@@ -11,6 +11,8 @@ const authConfig = require('../../config/auth');
 const { User } = require ('../models');
 
 function generateToken ( params = {}) {
+    //console.log(params);
+
   return jwt.sign({params}, authConfig.secret,
   {
     expiresIn : 86400,
@@ -45,16 +47,15 @@ router.post('/authenticate', async (req, res) => {
 
     const usuario = await User.findOne({where : {email}})
     if (!usuario)
-        return res.status(400).send({error :"Usuário não encontrado!"})
+        return res.status(400).send({error :"Usuário não encontrado!"});
 
     if(! await bcrypt.compare(password, usuario.password))
-     return res.status(400).send({error: "Senha invalida"})
+        return res.status(400).send({error: "Senha invalida"});
 
-     usuario.password = undefined;
-
+    usuario.password = undefined;
     res.send({
          usuario,
-         token : generateToken({id:usuario.email})
+         token : generateToken({id:usuario.id})
     });
 });   
 
@@ -127,6 +128,6 @@ router.put('/reset_password', async(req, res)=>{
         return res.status(400).send( {error : 'Não podemos resetar a senha, tente novamente'});
 
     }
-})
+});
 
 module.exports = app => app.use('/', router)

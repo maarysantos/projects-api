@@ -35,8 +35,7 @@ router.get('/:id', async (req, res) => { // LIST BY ID
 
 router.post('/', async (req, res) => { // CREATE
     try{
-        console.log( req.userId );
-        const project = await Project.create({...req.body, fk_user : req.userId});
+        const project = await Project.create({...req.body, fk_userId : req.userId});
         res.send({ msg : 'Projeto criado com sucesso!' });
 
     } catch (error){
