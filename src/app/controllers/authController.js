@@ -11,7 +11,6 @@ const authConfig = require('../../config/auth');
 const { User } = require ('../models');
 
 function generateToken ( params = {}) {
-    //console.log(params);
 
   return jwt.sign({params}, authConfig.secret,
   {
@@ -31,7 +30,7 @@ router.post('/register', async (req, res) => {
         
     return res.send ({
       msg : 'Cadastrado com sucesso!',
-      token : generateToken({id: usuario.email})
+      token : generateToken({id: usuario.id})
     });
 
   }catch (err){

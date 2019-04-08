@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     });
   Project.associate = function (models) {
     this.belongsTo(models.User, { foreignKey: 'fk_userId' });
+    //falta criar referencia a tasks
   };
   return Project;
 };
