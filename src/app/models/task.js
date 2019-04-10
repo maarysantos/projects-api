@@ -3,14 +3,28 @@ const bcrypt = require('bcryptjs');
 module.exports = (sequelize, DataTypes) => {
   const Task = sequelize.define('Task', {
 
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement : true
+    },
     title: {
       type: DataTypes.STRING,
-      primaryKey: true,
-      allowNull: false
+      allowNull: false,
+      validate : {
+        notEmpty :{
+          msg : 'Esse campo não pode ser vazio'
+        }
+      }
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate :{
+        notEmpty :{
+          msg : 'Esse campo não pode ser vazio'
+        }
+      }
     },
     completed: {
       type: DataTypes.BOOLEAN,

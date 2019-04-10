@@ -28,7 +28,7 @@ router.get('/:id', async (req, res) => { // LIST BY ID
         res.send({ project });
 
     } catch (error){
-        res.status(400).send({ err : ''})
+        res.status(400).send({ err : 'Projeto não encontrado'})
 
     }
 });

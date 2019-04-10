@@ -11,25 +11,38 @@ module.exports = (sequelize, DataTypes) => {
 
     email: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate:{
+        isMail :{
+          msg: 'Este campo precisa ser um e-mail'
+        },
+        notEmpty :{
+          msg : 'Esse campo não pode ser vazio'
+        }
+      }
     },
-    
     name: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate :{
+        notEmpty :{
+          msg : 'Esse campo não pode ser vazio'
+        }
+      }
     },
-
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-
+      validate :{
+        notEmpty :{
+          msg : 'Esse campo não pode ser vazio'
+        }
+      }
     },
-
     passwordResetToken: {
       type: DataTypes.STRING,
       //select : false
     },
-
     passwordResetExpires: {
       type: DataTypes.DATE,
       //select : false

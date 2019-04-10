@@ -3,21 +3,21 @@ const router = express.Router();
 
 const authMiddleware = require ('../middlewares/auth');
 const { Task } = require ('../models');
-
+const { Project } = require ('../models');
 
 router.use(authMiddleware);
 
-router.get('/', async (req, res) => { // LIST ALL TASKS BY ID task
+router.get('/', async (req, res) => { // LIST ALL TASKS BY ID PROJECT
     try{
-        const task = await Task.findAll(); 
+        const task = Task.findOne({where : req.params}); 
         if (tasks === null || tasks === [])
-           return res.send({ msg : 'Não tarefas cadastradas para esse projeto!' });
+           return res.send({ msg : 'Não há tarefas cadastradas para esse projeto!' });
 
         return res.status(200).send({ task });
 
 
     } catch (error){
-        res.status(400).send({ err : ''})
+        res.status(400).send({});
 
     }
 });
