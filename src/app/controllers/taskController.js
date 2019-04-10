@@ -3,6 +3,8 @@ const router = express.Router();
 
 const authMiddleware = require ('../middlewares/auth');
 const { Task } = require ('../models');
+const joi = require('joi');
+
 
 router.use(authMiddleware);
 

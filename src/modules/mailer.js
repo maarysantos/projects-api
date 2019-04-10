@@ -6,7 +6,6 @@ const hbs = require ('nodemailer-express-handlebars');
 
 const viewPath = path.resolve('./src/resources/mail/');
 
-
 //const viewPath = path.resolve(__dirname, "..", "views", "emails");
 
 const {host, port, user, pass} = require('../config/mail');
@@ -27,4 +26,4 @@ transport.use('compile',
   extName : '.html',
 }));
   
-  module.exports=transport;
+module.exports=transport;

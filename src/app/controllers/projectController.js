@@ -2,8 +2,8 @@ const express = require ('express');
 const router = express.Router();
 
 const authMiddleware = require ('../middlewares/auth');
-
 const { Project } = require ('../models');
+const joi = require('joi');
 
 router.use(authMiddleware);
 
@@ -34,6 +34,7 @@ router.get('/:id', async (req, res) => { // LIST BY ID
 });
 
 router.post('/', async (req, res) => { // CREATE
+    
     try{
         const project = await Project.create({...req.body, fk_userId : req.userId});
         res.status(201).send({ project});
