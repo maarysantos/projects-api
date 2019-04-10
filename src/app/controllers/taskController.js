@@ -3,18 +3,17 @@ const router = express.Router();
 
 const authMiddleware = require ('../middlewares/auth');
 const { Task } = require ('../models');
-const { Project } = require ('../models');
 
 router.use(authMiddleware);
 
 router.get('/', async (req, res) => { // LIST ALL TASKS BY ID PROJECT
     try{
-        const task = Task.findOne({where : req.params}); 
+
+        const task = Task.findOne({where : {fk_projectId : req.params}}); 
         if (tasks === null || tasks === [])
            return res.send({ msg : 'Não há tarefas cadastradas para esse projeto!' });
 
         return res.status(200).send({ task });
-
 
     } catch (error){
         res.status(400).send({});
@@ -25,7 +24,7 @@ router.get('/', async (req, res) => { // LIST ALL TASKS BY ID PROJECT
 router.post('/', async (req, res) => { // CREATE TASK
     try{
         const task = await Task.create({...req.body, fk_userId : req.userId});
-        res.status(201).send({ task});
+        res.status(201).send({ task });
 
     } catch (error){
         res.status(400).send({ err : 'Erro ao criar tarefa'})
