@@ -6,7 +6,7 @@ if(!fs.existsSync('logs')){
    fs.mkdirSync('logs');
 }
 
-module.exports= new winston.log({
+module.exports= winston.createLogger({
     transports :[
         new winston.transports.File({
             level : 'info',

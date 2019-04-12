@@ -6,9 +6,9 @@ const logger = require ('../src/modules/logger');
 
 const app = express();
 
-module.exports = app =>{
-    app.set('port', 300);
-    app.set('json spaces',4);
+//module.exports = app =>{
+   // app.set('port', 300);
+   // app.set('json spaces',4);
     app.use(morgan('common',{
         stream :{
             write :(message) =>{
@@ -16,7 +16,8 @@ module.exports = app =>{
             }
         }
     }
-    ))};
+    ))
+//};
 
 app.use(cors({
     origin :['http://localhost:3001'],

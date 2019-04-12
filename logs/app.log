@@ -1,0 +1,2 @@
+{"message":"::1 - - [12/Apr/2019:22:23:39 +0000] \"POST /authenticate HTTP/1.1\" 200 370\n","level":"info"}
+{"message":"::1 - - [12/Apr/2019:22:24:06 +0000] \"GET /projects HTTP/1.1\" 200 1745\n","level":"info"}
